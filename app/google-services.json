@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "799461490213",
+    "firebase_url": "https://passionfruit-3e7f2.firebaseio.com",
+    "project_id": "passionfruit-3e7f2",
+    "storage_bucket": "passionfruit-3e7f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799461490213:android:668e81019fec6027",
+        "android_client_info": {
+          "package_name": "com.example.mazay.passionfruit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799461490213-6do9k0besjjnul2niv67e8vhcqu75l7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mazay.passionfruit",
+            "certificate_hash": "f32ed4d0944ecc6ef8effd8afee5997b38c052be"
+          }
+        },
+        {
+          "client_id": "799461490213-96cu0i5rqj3bo6eqj0910u9ss2vhqs67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXezcm4kCFThoE7iU_hjgHLnJdynWq1QM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799461490213-96cu0i5rqj3bo6eqj0910u9ss2vhqs67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
