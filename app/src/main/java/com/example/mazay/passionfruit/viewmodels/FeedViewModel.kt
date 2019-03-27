@@ -12,13 +12,30 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.mazay.passionfruit.models.ProfileResponse.User
+
+
 
 
 class FeedViewModel: ViewModel() {
-    var users: MutableLiveData<List<ProfileResponse.User>>? = null
+    //var users: MutableLiveData<List<ProfileResponse.User>>? = null
+    private var users: MutableLiveData<List<User>> = MutableLiveData()
+    private lateinit var model: FeedViewModel
+
+    fun getfeed(): MutableLiveData<List<User>>? {
+        return users
+    }
+
+    fun getUsers(): LiveData<List<User>> {
+        if (users == null) {
+            users = MutableLiveData<List<User>>()
+            loadUsers()
+        }
+        return users as MutableLiveData<List<User>>
+    }
 
 
-    fun getFeed() : MutableLiveData<List<ProfileResponse.User>>?{
+    fun loadUsers() : MutableLiveData<List<ProfileResponse.User>>{
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://api.myjson.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -41,7 +58,7 @@ class FeedViewModel: ViewModel() {
 
                 if(feedResponse.users != null) {
                     //Log.d("MainActivity", "feedresponse: " +feedResponse.toString())
-                    users?.setValue(response.body()!!.users);
+                    users.setValue(response.body()!!.users);
 
                 }
             }

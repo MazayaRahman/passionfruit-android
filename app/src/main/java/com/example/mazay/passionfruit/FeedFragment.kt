@@ -1,5 +1,6 @@
 package com.example.mazay.passionfruit
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -38,16 +39,16 @@ class FeedFragment: Fragment() {
 
 
         model = ViewModelProviders.of(this).get(FeedViewModel::class.java)
-
-        model.getFeed()?.observe(this, Observer { users->
+        model.loadUsers().observe(this, Observer{ users ->
+            // update UI
             recyclerView.apply {
                 // set a LinearLayoutManager to handle Android
                 layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
                 // set the custom adapter to the RecyclerView
+                Log.d("MainActivity",users.toString())
                 adapter = CustomAdapter(users)
             }
         })
-
     }
 
     override fun onCreateView(inflater: LayoutInflater,
