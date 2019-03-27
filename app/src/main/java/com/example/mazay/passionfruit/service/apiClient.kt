@@ -14,7 +14,7 @@ interface apiClient {
     abstract fun getUsers(): Call<FeedResponse>
 
     @GET("bins/13yfm2")
-    abstract fun getProfile(userID: Integer): Call<ProfileResponse>
+    abstract fun getProfile(): Call<ProfileResponse>
 
     @POST("bins/7xb9m")
     abstract fun userLogin(email: String, password: String): Call<LoginResponse>

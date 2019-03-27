@@ -7,6 +7,7 @@ import com.google.firebase.internal.FirebaseAppHelper.getToken
 import com.google.firebase.auth.GetTokenResult
 import com.google.android.gms.tasks.Task
 import android.support.annotation.NonNull
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.LinearLayout
@@ -28,49 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recView = recyclerView
-
-        recView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-
-        var userList: MutableList<ProfileResponse.User>? = mutableListOf()
-
-        recView.adapter = CustomAdapter(userList)
-
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.myjson.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        val apiClientService = retrofit.create(apiClient::class.java)
-
-        apiClientService.getUsers().enqueue(object: Callback<FeedResponse> {
-
-            override fun onResponse(call: Call<FeedResponse>, response: Response<FeedResponse>) {
-                if (!response.isSuccessful) {
-                    // Report error here
-                    Log.d("MainActivity", "feedResponse failed!")
-                    return
-                }
-                val feedResponse = response.body()
-                        ?: // Report error here
-                        return
-                //Log.d("MainActivity", "userdata: " +(feedResponse?.users==null))
-
-                if(feedResponse.users != null) {
-                    //Log.d("MainActivity", "feedresponse: " +feedResponse.toString())
-                    userList?.clear()
-                    userList?.addAll(feedResponse.users!!)
-                    recyclerView.adapter?.notifyDataSetChanged()
-                    //mainText.text = userList.toString()
-                    //Log.d("MainActivity", userList.toString())
-
-                }
-            }
-            override fun onFailure(call: Call<FeedResponse>, t: Throwable) {
-                // Report error here
-                Log.d("MainActivity", t.toString())
-            }
-        });
+        switchFragment(FeedFragment())
 
 
  /*       val mUser = FirebaseAuth.getInstance().currentUser
@@ -85,5 +44,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 */
+    }
+
+    private fun switchFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.replace(R.id.frame_layout_holder, fragment)
+        fragmentTransaction.addToBackStack(null)
+
+        fragmentTransaction.commit()
     }
 }
