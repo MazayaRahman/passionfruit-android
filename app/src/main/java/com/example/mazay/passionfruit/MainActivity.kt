@@ -22,6 +22,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.support.design.widget.BottomNavigationView
+import android.view.MenuItem
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +31,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         switchFragment(FeedFragment())
+
+        bottom_naviagation.setOnNavigationItemSelectedListener(navListener);
 
 
  /*       val mUser = FirebaseAuth.getInstance().currentUser
@@ -46,11 +51,31 @@ class MainActivity : AppCompatActivity() {
 */
     }
 
+    private val navListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
+            var selectedFragment: Fragment? = null
+
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    switchFragment(FeedFragment())
+                    return true
+                }
+
+                R.id.nav_profile -> {
+                    switchFragment(ProfileFragment())
+                    return true
+                }
+            }
+
+            return false
+        }
+    }
+
     private fun switchFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.frame_layout_holder, fragment)
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.addToBackStack(null)
 
         fragmentTransaction.commit()
