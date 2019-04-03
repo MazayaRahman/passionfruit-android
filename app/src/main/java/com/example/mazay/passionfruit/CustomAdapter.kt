@@ -28,6 +28,7 @@ import com.example.mazay.passionfruit.models.ProfileResponse
 
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             val textViewName = itemView.findViewById<TextView>(R.id.textViewName)
-            val textViewTime = itemView.findViewById<TextView>(R.id.textViewTime)
+            val textViewTime = itemView.findViewById<TextView>(R.id.textViewMajor)
+            val textViewYear = itemView.findViewById<TextView>(R.id.textViewYear)
         }
     }
