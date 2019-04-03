@@ -25,8 +25,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.widget.Toast
 import android.provider.ContactsContract.CommonDataKinds.Note
-
-
+import android.content.Intent
+import java.io.Serializable
 
 
 class FeedFragment: Fragment() {
@@ -46,7 +46,7 @@ class FeedFragment: Fragment() {
                 layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
                 // set the custom adapter to the RecyclerView
                 Log.d("MainActivity",users.toString())
-                adapter = CustomAdapter(users)
+                adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
             }
         })
     }
@@ -55,5 +55,13 @@ class FeedFragment: Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.feed_layout, container, false)
+
+
+    private fun userClicked(user : ProfileResponse.User) {
+        //Toast.makeText(context, "Clicked: ${user.name}", Toast.LENGTH_LONG).show()
+        val intent : Intent = Intent(context,PopupActivity::class.java)
+        intent.putExtra("user",user as Serializable)
+        startActivity(intent)
+    }
 
 }

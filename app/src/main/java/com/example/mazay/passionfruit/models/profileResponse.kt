@@ -1,6 +1,7 @@
 package com.example.mazay.passionfruit.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class ProfileResponse {
     @SerializedName("user") var user: User?=null
@@ -9,12 +10,12 @@ class ProfileResponse {
                     val name: String,
                     val profileInfo: ProfileInfo,
                     val socialmedia: SocialMedia,
-                    val userid: Int)
+                    val userid: Int) : Serializable
 
-    data class SocialMedia(@SerializedName("social media") val facebook: String?)
+    data class SocialMedia(@SerializedName("social media") val facebook: String?) : Serializable
 
     data class ProfileInfo(@SerializedName("profileInfo") val age: Int,
-                           val gender: String)
+                           val gender: String) : Serializable
 
 
 }
