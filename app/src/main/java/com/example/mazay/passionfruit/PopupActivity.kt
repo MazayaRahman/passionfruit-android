@@ -18,6 +18,6 @@ class PopupActivity : AppCompatActivity() {
         val intent : Intent = intent
         val user = intent.extras.get("user")as ProfileResponse.User
 
-        testView.text = user.name
+        //testView.text = user.name
     }
 }

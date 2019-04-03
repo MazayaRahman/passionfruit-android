@@ -13,33 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-
-            android:id="@+id/profile_image"
-
-            android:layout_width="100dp"
-
-            android:layout_height="100dp"
-
-            android:layout_marginStart="21dp"
-
-            android:layout_marginLeft="21dp"
-
-            android:layout_marginTop="31dp"
-
-            android:layout_marginBottom="31dp"
-
-            android:src="@mipmap/ic_launcher"
-
-            app:civ_border_color="#FF000000"
-
-            app:civ_border_width="2dp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent" />
+        
 
     </LinearLayout>
 
