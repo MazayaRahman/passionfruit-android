@@ -23,7 +23,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         
-        <activity android:name=".PopupActivity"></activity>
+        <activity android:name=".PopupActivity"
+            android:theme="@style/AppTheme.PopMe"
+            ></activity>
 
     </application>
 
