@@ -1,8 +1,8 @@
-package com.example.mazay.passionfruit.service
+package com.example.mazay.fruit.service
 
-import com.example.mazay.passionfruit.models.FeedResponse
-import com.example.mazay.passionfruit.models.LoginResponse
-import com.example.mazay.passionfruit.models.ProfileResponse
+import com.example.mazay.fruit.models.FeedResponse
+import com.example.mazay.fruit.models.LoginResponse
+import com.example.mazay.fruit.models.ProfileResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST

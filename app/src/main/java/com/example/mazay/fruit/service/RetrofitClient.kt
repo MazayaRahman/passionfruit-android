@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit.service
+package com.example.mazay.fruit.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

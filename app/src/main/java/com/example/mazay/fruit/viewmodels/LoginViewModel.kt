@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit.viewmodels
+package com.example.mazay.fruit.viewmodels
 
 import android.arch.lifecycle.ViewModel
 

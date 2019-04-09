@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit
+package com.example.mazay.fruit
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
@@ -13,10 +13,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.example.mazay.passionfruit.models.FeedResponse
-import com.example.mazay.passionfruit.models.ProfileResponse
-import com.example.mazay.passionfruit.service.apiClient
-import com.example.mazay.passionfruit.viewmodels.FeedViewModel
+import com.example.mazay.fruit.models.FeedResponse
+import com.example.mazay.fruit.models.ProfileResponse
+import com.example.mazay.fruit.service.apiClient
+import com.example.mazay.fruit.viewmodels.FeedViewModel
 import kotlinx.android.synthetic.main.feed_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -59,7 +59,7 @@ class FeedFragment: Fragment() {
 
     private fun userClicked(user : ProfileResponse.User) {
         //Toast.makeText(context, "Clicked: ${user.name}", Toast.LENGTH_LONG).show()
-        val intent : Intent = Intent(context,PopupActivity::class.java)
+        val intent : Intent = Intent(context, PopupActivity::class.java)
         intent.putExtra("user",user as Serializable)
         startActivity(intent)
     }

@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit
+package com.example.mazay.fruit
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
-import com.example.mazay.passionfruit.models.ProfileResponse
+import com.example.mazay.fruit.models.ProfileResponse
 import kotlinx.android.synthetic.main.activity_popup.*
 
 class PopupActivity : AppCompatActivity() {
