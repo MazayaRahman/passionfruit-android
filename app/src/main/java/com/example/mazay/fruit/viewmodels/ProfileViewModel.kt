@@ -1,13 +1,13 @@
-package com.example.mazay.passionfruit.viewmodels
+package com.example.mazay.fruit.viewmodels
 
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.example.mazay.passionfruit.models.FeedResponse
-import com.example.mazay.passionfruit.models.ProfileResponse
-import com.example.mazay.passionfruit.service.apiClient
+import com.example.mazay.fruit.models.FeedResponse
+import com.example.mazay.fruit.models.ProfileResponse
+import com.example.mazay.fruit.service.apiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

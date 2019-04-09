@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit.models
+package com.example.mazay.fruit.models
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

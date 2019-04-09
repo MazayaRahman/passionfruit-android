@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit
+package com.example.mazay.fruit
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,9 +11,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.LinearLayout
-import com.example.mazay.passionfruit.models.FeedResponse
-import com.example.mazay.passionfruit.models.ProfileResponse
-import com.example.mazay.passionfruit.service.apiClient
+import com.example.mazay.fruit.models.FeedResponse
+import com.example.mazay.fruit.models.ProfileResponse
+import com.example.mazay.fruit.service.apiClient
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*

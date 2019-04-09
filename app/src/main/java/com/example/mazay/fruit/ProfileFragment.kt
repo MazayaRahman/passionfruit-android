@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit
+package com.example.mazay.fruit
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mazay.passionfruit.viewmodels.ProfileViewModel
+import com.example.mazay.fruit.viewmodels.ProfileViewModel
 import kotlinx.android.synthetic.main.profile_layout.*
 
 class ProfileFragment: Fragment() {

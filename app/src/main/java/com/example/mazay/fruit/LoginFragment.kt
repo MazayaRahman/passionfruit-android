@@ -1,4 +1,4 @@
-package com.example.mazay.passionfruit
+package com.example.mazay.fruit
 
 import android.support.v4.app.Fragment
 
