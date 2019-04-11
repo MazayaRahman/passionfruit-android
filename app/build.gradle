@@ -50,5 +50,7 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    compile 'com.google.android.gms:play-services-auth:16.0.1'
+
 
 }
