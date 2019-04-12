@@ -13,6 +13,9 @@ interface apiClient {
     @GET("bins/1d788u")
     abstract fun getUsers(): Call<FeedResponse>
 
+    @GET("bins/vykt8")
+    abstract fun getSelectedUsers(): Call<FeedResponse>
+
     @GET("bins/13yfm2")
     abstract fun getProfile(): Call<ProfileResponse>
 

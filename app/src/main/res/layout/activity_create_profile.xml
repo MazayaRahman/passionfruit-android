@@ -6,11 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".CreateProfileActivity">
 
+    <EditText
+        android:id="@+id/editClass"
+        android:layout_width="358dp"
+        android:layout_height="42dp"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="161dp" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/classView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create ur Profile"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="32dp" />
+        android:text="Class Of"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="358dp"
+        android:layout_height="42dp"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="81dp" />
+
+    <EditText
+        android:id="@+id/editMajor"
+        android:layout_width="358dp"
+        android:layout_height="42dp"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="238dp" />
+
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <TextView
+        android:id="@+id/Bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="287dp" />
+
+    <TextView
+        android:id="@+id/majorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Major"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="219dp" />
+
 </android.support.constraint.ConstraintLayout>

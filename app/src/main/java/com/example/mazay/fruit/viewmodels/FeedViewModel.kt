@@ -71,6 +71,41 @@ class FeedViewModel: ViewModel() {
         return users
     }
 
+    fun loadSelectedUsers() : MutableLiveData<List<ProfileResponse.User>>{
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.myjson.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val apiClientService = retrofit.create(apiClient::class.java)
+
+        apiClientService.getSelectedUsers().enqueue(object: Callback<FeedResponse> {
+
+            override fun onResponse(call: Call<FeedResponse>, response: Response<FeedResponse>) {
+                if (!response.isSuccessful) {
+                    // Report error here
+                    Log.d("MainActivity", "feedResponse failed!")
+                    return
+                }
+                val feedResponse = response.body()
+                        ?: // Report error here
+                        return
+                //Log.d("MainActivity", "userdata: " +(feedResponse?.users==null))
+
+                if(feedResponse.users != null) {
+                    //Log.d("MainActivity", "feedresponse: " +feedResponse.toString())
+                    users.setValue(response.body()!!.users);
+
+                }
+            }
+            override fun onFailure(call: Call<FeedResponse>, t: Throwable) {
+                // Report error here
+                Log.d("MainActivity", t.toString())
+            }
+        });
+
+        return users
+    }
 
 
 
