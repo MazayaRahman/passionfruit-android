@@ -31,24 +31,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         switchFragment(FeedFragment())
 
         bottom_naviagation.setOnNavigationItemSelectedListener(navListener);
 
-
- /*       val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val idToken = task.result!!.token
-                        // Send token to your backend via HTTPS
-                        // ...
-                    } else {
-                        // Handle error -> task.getException();
-                    }
-                }
-*/
     }
 
     private val navListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
@@ -76,8 +62,10 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
 
         fragmentTransaction.replace(R.id.fragment_container, fragment)
-        fragmentTransaction.addToBackStack(null)
+        //fragmentTransaction.addToBackStack(null)
 
         fragmentTransaction.commit()
     }
+
+
 }
