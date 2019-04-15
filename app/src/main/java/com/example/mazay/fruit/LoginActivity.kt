@@ -171,8 +171,11 @@ class LoginActivity : AppCompatActivity() {
                             val intent : Intent = Intent(this, CreateProfileActivity::class.java)
                             //intent.putExtra("user",user as Serializable)
                             startActivity(intent)
+                        }else{
+                            val intent : Intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
                         }
-                        successCallback(auth.currentUser!!)
+                        //successCallback(auth.currentUser!!)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(javaClass.name, "signInWithCredential:failure", task.exception)
