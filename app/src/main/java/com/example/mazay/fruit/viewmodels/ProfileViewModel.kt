@@ -8,6 +8,7 @@ import android.util.Log
 import com.example.mazay.fruit.models.FeedResponse
 import com.example.mazay.fruit.models.ProfileResponse
 import com.example.mazay.fruit.service.apiClient
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class ProfileViewModel : ViewModel() {
+
     private lateinit var userId: Integer
     private var user: MutableLiveData<ProfileResponse.User> = MutableLiveData()
 
