@@ -7,10 +7,14 @@ class ProfileResponse {
     @SerializedName("user") var user: User?=null
 
     data class User(@SerializedName("user") val authToken: String,
+                    val username: String,
                     val name: String,
-                    val profileInfo: ProfileInfo,
-                    val socialmedia: SocialMedia,
-                    val userid: Int) : Serializable
+                    val age: String,
+                    val major: String,
+                    val year: String,
+                    //val profileInfo: ProfileInfo,
+                    //val socialmedia: SocialMedia,
+                    val user_id: Int) : Serializable
 
     data class SocialMedia(@SerializedName("social media") val facebook: String?) : Serializable
 

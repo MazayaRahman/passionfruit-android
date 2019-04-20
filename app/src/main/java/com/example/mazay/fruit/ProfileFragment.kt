@@ -11,20 +11,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.example.mazay.fruit.viewmodels.ProfileViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.profile_layout.*
 
 class ProfileFragment: Fragment() {
 
     private lateinit var model: ProfileViewModel
-
+    lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
 
 
+/*
         model = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         //model.setUser()
         model.loadUser().observe(this, Observer { user->
@@ -32,7 +35,7 @@ class ProfileFragment: Fragment() {
             nameView.text = user?.name
         })
 
-
+*/
 
 
 
@@ -43,6 +46,11 @@ class ProfileFragment: Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.profile_layout, container, false)
 
+        val name_view = v.findViewById(R.id.nameView) as TextView
+        auth = FirebaseAuth.getInstance()
+
+
+        name_view.text = auth.currentUser!!.email
 
         val editprofile_btn = v.findViewById(R.id.edit_profile) as Button
         // set on-click listener
