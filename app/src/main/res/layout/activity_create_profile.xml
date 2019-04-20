@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/editBio"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -39,7 +39,7 @@
 
     <EditText
         android:id="@+id/editClass"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -65,7 +65,7 @@
 
     <EditText
         android:id="@+id/editName"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -79,7 +79,7 @@
 
     <EditText
         android:id="@+id/editMajor"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"

@@ -39,9 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        button.setOnClickListener {
-            buttonClickListener()
-        }
+
 
         button_gsignin.setOnClickListener {
             googleSignIn()
@@ -53,80 +51,31 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            successCallback(currentUser)
+            val intent : Intent = Intent(this, MainActivity::class.java)
+            //intent.putExtra("user",user as Serializable)
+            startActivity(intent)
+            //successCallback(currentUser)
             //callback to update ui with current user info
         }
     }
+
+
 
     private fun googleSignIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
-    fun buttonClickListener(){
-
-        if(isCreate) {
-            auth.createUserWithEmailAndPassword(
-                    edittext_email.text.toString(),
-                    edittext_pass.text.toString())
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Created", Toast.LENGTH_LONG).show()
-
-                        //update the ui with this new user
-                        //successCallback(it.user)
-                    }
-
-                    .addOnFailureListener {
-                        //failCallback()
-                    }
-
-            return
-
-        }
-
-        if(auth.currentUser != null) {
-
-            auth.signOut()
-
-            textview_curr_user.text = resources.getString(R.string.no_user)
-            button.text = resources.getString(R.string.prompt_sign_in)
-            button_gsignin.visibility = View.VISIBLE
-
-            googleSignInClient.signOut()
-
-
-
-            return
-
-        }
-
-
-        auth.signInWithEmailAndPassword(edittext_email.text.toString(), edittext_pass.text.toString())
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Signed in", Toast.LENGTH_LONG).show()
-                    //update ui with current user
-                    //successCallback(auth.currentUser!!)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
-                }
-
-    }
 
     fun successCallback(user : FirebaseUser) {
 
         textview_curr_user.text = "Hello ${user?.email}"
-
-        button.text = resources.getString(R.string.prompt_sign_out)
-
         button_gsignin.visibility = View.INVISIBLE
 
     }
 
     fun failCallback() {
-
         Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
