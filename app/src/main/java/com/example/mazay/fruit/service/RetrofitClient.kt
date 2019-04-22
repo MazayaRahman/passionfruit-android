@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClient {
 
     internal lateinit var sRetrofit: Retrofit
-    //internal var BASE_URL = "https://passionfruit-backend.herokuapp.com/"
-    internal var BASE_URL = "https://api.myjson.com/"
+    internal var BASE_URL = "https://passionfruit-backend.herokuapp.com/"
+    //internal var BASE_URL = "https://api.myjson.com/"
 
     public fun getRetrofit(): Retrofit {
         if (sRetrofit == null) {

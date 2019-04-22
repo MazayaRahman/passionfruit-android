@@ -37,13 +37,13 @@ class FeedViewModel: ViewModel() {
 
     fun loadUsers() : MutableLiveData<List<ProfileResponse.User>>{
         val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.myjson.com/")
+                .baseUrl("https://passionfruit-backend.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
         val apiClientService = retrofit.create(apiClient::class.java)
 
-        apiClientService.getUsers().enqueue(object: Callback<FeedResponse> {
+        apiClientService.users().enqueue(object: Callback<FeedResponse> {
 
             override fun onResponse(call: Call<FeedResponse>, response: Response<FeedResponse>) {
                 if (!response.isSuccessful) {
@@ -73,7 +73,7 @@ class FeedViewModel: ViewModel() {
 
     fun loadSelectedUsers() : MutableLiveData<List<ProfileResponse.User>>{
         val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.myjson.com/")
+                .baseUrl("https://passionfruit-backend.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
@@ -94,6 +94,7 @@ class FeedViewModel: ViewModel() {
 
                 if(feedResponse.users != null) {
                     //Log.d("MainActivity", "feedresponse: " +feedResponse.toString())
+                    Log.d("MainActivity", "feedResults:" + response.body().toString())
                     users.setValue(response.body()!!.users);
 
                 }

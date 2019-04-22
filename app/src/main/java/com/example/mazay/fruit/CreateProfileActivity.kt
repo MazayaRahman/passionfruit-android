@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.example.mazay.fruit.models.FeedResponse
 import com.example.mazay.fruit.service.apiClient
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -30,17 +31,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CreateProfileActivity : AppCompatActivity() {
-    private var imageview: CircleImageView? = null
+    //private var imageview: CircleImageView? = null
     private val GALLERY = 1
     private val CAMERA = 2
+    lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_profile)
 
-        imageview = findViewById(R.id.profile_image) as CircleImageView
+        //imageview = findViewById(R.id.profile_image) as CircleImageView
 
-        imageview!!.setOnClickListener { showPictureDialog() }
+        //imageview!!.setOnClickListener { showPictureDialog() }
+        auth = FirebaseAuth.getInstance()
 
         save_btn.setOnClickListener {
             val jsonObject = JsonObject()
@@ -88,6 +91,8 @@ class CreateProfileActivity : AppCompatActivity() {
 
         });
     }
+
+    /*
 
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
@@ -150,6 +155,8 @@ class CreateProfileActivity : AppCompatActivity() {
             Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
         }
     }
+
+    */
 
 
 }

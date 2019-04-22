@@ -13,21 +13,25 @@ import retrofit2.http.Body
 
 interface apiClient {
 
+    /*
+
     @GET("bins/1d788u")
     abstract fun getUsers(): Call<FeedResponse>
 
-    /*
+    */
+
+
 
     @GET("users")
     abstract fun users(): Call<FeedResponse>
 
-    */
+
 
     @POST("saveRawJSONData")
     fun saveUserData(@Body userData: JsonObject): Call<JsonObject>
 
-
-    @GET("bins/vykt8")
+    //@GET("bins/vykt8")
+    @GET("users")
     abstract fun getSelectedUsers(): Call<FeedResponse>
 
     @GET("bins/13yfm2")
