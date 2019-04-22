@@ -7,6 +7,9 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+import com.google.gson.JsonObject
+import retrofit2.http.Body
+
 
 interface apiClient {
 
@@ -19,6 +22,10 @@ interface apiClient {
     abstract fun users(): Call<FeedResponse>
 
     */
+
+    @POST("saveRawJSONData")
+    fun saveUserData(@Body userData: JsonObject): Call<JsonObject>
+
 
     @GET("bins/vykt8")
     abstract fun getSelectedUsers(): Call<FeedResponse>

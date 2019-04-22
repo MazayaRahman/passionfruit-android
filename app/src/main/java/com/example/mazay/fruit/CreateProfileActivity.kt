@@ -14,15 +14,22 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.mazay.fruit.models.FeedResponse
+import com.example.mazay.fruit.service.apiClient
+import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 import kotlinx.android.synthetic.main.activity_create_profile.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class CreateProfileActivity : AppCompatActivity() {
-
     private var imageview: CircleImageView? = null
     private val GALLERY = 1
     private val CAMERA = 2
@@ -35,6 +42,51 @@ class CreateProfileActivity : AppCompatActivity() {
 
         imageview!!.setOnClickListener { showPictureDialog() }
 
+        save_btn.setOnClickListener {
+            val jsonObject = JsonObject()
+            val nameOfUser = editName.text
+            val ageOfUser = editAge.text
+            val classOfUser = editClass.text
+            val majorOfUser = editMajor.text
+            val bioOfUser = editBio.text
+            jsonObject.addProperty("name",nameOfUser.toString());
+            jsonObject.addProperty("age",ageOfUser.toString());
+            jsonObject.addProperty("year",classOfUser.toString());
+            jsonObject.addProperty("major",majorOfUser.toString());
+            jsonObject.addProperty("bio",bioOfUser.toString());
+
+            sendNetworkRequest(jsonObject);
+        }
+
+
+    }
+
+    private fun sendNetworkRequest(jsonObject: JsonObject){
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.myjson.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val apiClientService = retrofit.create(apiClient::class.java)
+        apiClientService.saveUserData(jsonObject).enqueue(object: Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                // Report error here
+                Log.d("MainActivity", t.toString())
+            }
+
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                if (!response.isSuccessful) {
+                    // Report error here
+                    Log.d("MainActivity", "Could not save user data!")
+                    return
+                }
+
+                Toast.makeText(this@CreateProfileActivity, "User Successfully Create!", Toast.LENGTH_SHORT)
+
+            }
+
+
+        });
     }
 
     private fun showPictureDialog() {

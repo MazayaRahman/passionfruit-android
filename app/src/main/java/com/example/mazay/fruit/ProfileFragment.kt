@@ -16,6 +16,9 @@ import android.widget.Toast
 import com.example.mazay.fruit.viewmodels.ProfileViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.profile_layout.*
+import com.google.gson.JsonObject
+
+
 
 class ProfileFragment: Fragment() {
 
@@ -60,6 +63,9 @@ class ProfileFragment: Fragment() {
             //intent.putExtra("user",user as Serializable)
             startActivity(intent)
         }
+
+
+
 
         return v
 
