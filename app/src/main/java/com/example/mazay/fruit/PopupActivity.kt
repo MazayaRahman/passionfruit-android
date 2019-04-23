@@ -1,6 +1,7 @@
 package com.example.mazay.fruit
 
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -38,6 +39,13 @@ class PopupActivity : AppCompatActivity() {
             finish()
         }
         userName.text = user.name
+
+        button_fb.setOnClickListener {
+            val browserIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://googole.com/"))
+            startActivity(browserIntent)
+        }
 
     }
 }
