@@ -1,9 +1,14 @@
 package com.example.mazay.fruit.viewmodels
 
 
+import android.app.Application
+import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import android.util.Log
 import com.example.mazay.fruit.models.FeedResponse
 import com.example.mazay.fruit.models.ProfileResponse
@@ -16,22 +21,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(val app: Application) : AndroidViewModel(app) {
 
     private lateinit var userId: Integer
+    private var id: String = "notempty"
     private var user: MutableLiveData<ProfileResponse.User> = MutableLiveData()
 
-    fun getUser(): MutableLiveData<ProfileResponse.User>?{
-        return user
-    }
-
-    fun setUser(): LiveData<ProfileResponse.User>{
-        if (user == null) {
-            user = MutableLiveData<ProfileResponse.User>()
-            loadUser()
-        }
-        return user as MutableLiveData<ProfileResponse.User>
-    }
 
     fun loadUser(): LiveData<ProfileResponse.User> {
         userId = Integer(123123123)
@@ -64,6 +59,43 @@ class ProfileViewModel : ViewModel() {
             override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
                 // Report error here
                 Log.d("MainActivity", t.toString())
+            }
+        });
+        return user
+    }
+
+    fun loadUserProfile(): LiveData<ProfileResponse.User> {
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://passionfruit-backend.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val apiClientService = retrofit.create(apiClient::class.java)
+
+        id = PreferenceManager.getDefaultSharedPreferences(app).getString("user_id", "it s not working");
+
+        apiClientService.getUserProfile(id).enqueue(object: Callback<List<ProfileResponse.User>> {
+
+            override fun onResponse(call: Call<List<ProfileResponse.User>> , response: Response<List<ProfileResponse.User>> ) {
+                if (!response.isSuccessful) {
+                    // Report error here
+                    Log.d("MainActivity", "feedResponse failed!")
+                    return
+                }
+                val profResponse = response.body()
+                        ?: // Report error here
+                        return
+                //Log.d("MainActivity", "userdata: " +(feedResponse?.users==null))
+
+                if(profResponse.get(0) != null) {
+                    //Log.d("MainActivity", "feedresponse: " +feedResponse.toString())
+                    user.value = profResponse.get(0)
+
+                }
+            }
+            override fun onFailure(call: Call<List<ProfileResponse.User>> , t: Throwable) {
+                // Report error here
+                Log.d("MainActivity", "it failed")
             }
         });
         return user

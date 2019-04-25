@@ -1,6 +1,7 @@
 package com.example.mazay.fruit
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
@@ -35,10 +36,18 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var auth : FirebaseAuth
     lateinit var googleSignInClient : GoogleSignInClient
+    private var userID : String = String()
+    private lateinit var sharedPref : SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        sharedPref = getSharedPreferences("myPref", MODE_PRIVATE);
+        sharedPref.edit().putString("user_id", userID).commit();
+
         auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

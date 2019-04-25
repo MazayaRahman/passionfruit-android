@@ -1,38 +1,38 @@
 package com.example.mazay.fruit.service
 
-import com.example.mazay.fruit.models.FeedResponse
-import com.example.mazay.fruit.models.LoginResponse
-import com.example.mazay.fruit.models.ProfileResponse
+import com.example.mazay.fruit.models.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
 import com.google.gson.JsonObject
-import retrofit2.http.Body
+import retrofit2.http.*
+import java.util.*
 
 
 interface apiClient {
 
-    /*
-
-    @GET("bins/1d788u")
-    abstract fun getUsers(): Call<FeedResponse>
-
-    */
-
-
-
     @GET("users")
     abstract fun users(): Call<FeedResponse>
 
-
-
-    @POST("saveRawJSONData")
-    fun saveUserData(@Body userData: JsonObject): Call<JsonObject>
-
-    //@GET("bins/vykt8")
     @GET("users")
-    abstract fun getSelectedUsers(): Call<FeedResponse>
+    abstract fun getUsersByMajor(@Query("major") major: String): Call<FeedResponse>
+
+    @GET("users")
+    abstract fun getUsersByYear(@Query("year") year: String): Call<FeedResponse>
+
+    @GET("users")
+    abstract fun getSelectedUsers(@Query("major") major: String, @Query("year") year: String): Call<FeedResponse>
+
+    @GET("majors")
+    abstract fun getMajors() : Call<MajorResponse>
+
+    @GET("years")
+    abstract fun getYears() : Call<YearResponse>
+
+    @POST("users")
+    fun saveUserData(@Body userData: ProfileResponse.User): Call<LoginResponse>
+
+
+    @GET("users/{id}")
+    abstract fun getUserProfile(@Path("id") userId: String): Call<List<ProfileResponse.User>>
 
     @GET("bins/13yfm2")
     abstract fun getProfile(): Call<ProfileResponse>

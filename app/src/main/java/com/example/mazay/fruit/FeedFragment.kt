@@ -63,16 +63,51 @@ class FeedFragment: Fragment() {
         // Inflate the layout for this fragment
     val v = inflater.inflate(R.layout.feed_layout, container, false)
 
-    val majors = arrayOf("Computer Science", "Mathematics", "Biology", "Music", "Physics", "Statistics", "Communications")
-    val classes = arrayOf("2019", "2020", "2021", "2022")
+    val majors = arrayOf("All", "Accounting", "Actuarial Science", "Africana Studies", "American Literature", "Anthropology", "Art: Electronic or Studio", "Art History", "Biology", "Business Administration", "Chemistry", "Childhood Studies", "Communications", "Computational and Integrative Biology", "Computer Science", "Criminal Justice", "Digital Studies", "Economics", "Education", "Engineering", "English", "English Literature", "Ethics", "European Studies", "Film Studies", "Finance", "French", "Gender Studies", "General Science", "German", "Health Sciences", "History", "Human Resource Management", "International Business", "Journalism", "Latin American and Latino Studies", "Learning Abroad", "Legal Studies", "Liberal Studies", "Management", "Management Information Systems and Ecommerce", "Marketing", "Mathematics", "Museum Studies", "Music", "National Security Studies", "Nursing", "Nursing-School Nurse", "Philosophy", "Physics", "Political Science", "Pre-Dental", "Pre-Law", "Pre-Medicine", "Pre-Veterinary", "Psychology", "Religion", "Social Work", "Sociology", "Spanish", "Statistics", "Student-proposed", "Teacher Preparation", "Theater Arts", "Urban Studies", "Womens and Gender Studies")
+    //val majors = model.loadMajors()
+    val classes = arrayOf("All", "2019", "2020", "2021", "2022", "2023", "2024", "2025")
+    //val classes = model.loadYears()
+    Log.d("FeedFragment", classes.toString())
     val spinner = v.findViewById(R.id.spinner_major) as Spinner
     val spinnerClass = v.findViewById(R.id.spinner_class) as Spinner
+    val filterButton = v.findViewById(R.id.button_filter) as Button
     spinner.adapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,majors)
     spinnerClass.adapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,classes)
 
-    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-        override fun onNothingSelected(p0: AdapterView<*>?) {
-            model.loadUsers().observe(viewLifecycleOwner, Observer{ users ->
+    filterButton.setOnClickListener {
+        val major = spinner.selectedItem.toString()
+        val year = spinnerClass.selectedItem.toString()
+
+        if(year == "All" && major != "All"){
+            model.loadUsersByMajors(major).observe(viewLifecycleOwner, Observer{ users ->
+                // update UI
+                if(users!!.isEmpty()){
+                    Toast.makeText(context, "No users in the chosen category.", Toast.LENGTH_LONG).show()
+                }
+                recyclerView.apply {
+                    // set a LinearLayoutManager to handle Android
+                    layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+                    // set the custom adapter to the RecyclerView
+                    Log.d("MainActivity",users.toString())
+                    adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
+                }
+            })
+        }else if(major == "All" && year != "All"){
+            model.loadUsersByYears(year).observe(viewLifecycleOwner, Observer{ users ->
+                // update UI
+                if(users!!.isEmpty()){
+                    Toast.makeText(context, "No users in the chosen category.", Toast.LENGTH_LONG).show()
+                }
+                recyclerView.apply {
+                    // set a LinearLayoutManager to handle Android
+                    layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+                    // set the custom adapter to the RecyclerView
+                    Log.d("MainActivity",users.toString())
+                    adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
+                }
+            })
+        }else if(major == "All" && year == "All"){
+            model.loadUsers().observe(this, Observer{ users ->
                 // update UI
                 recyclerView.apply {
                     // set a LinearLayoutManager to handle Android
@@ -82,78 +117,25 @@ class FeedFragment: Fragment() {
                     adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
                 }
             })
-
-        }
-
-        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-            if(p2 != 0){
-                Toast.makeText(context,majors[p2], Toast.LENGTH_LONG).show()
-                model.loadSelectedUsers().observe(viewLifecycleOwner, Observer{ users ->
-                    // update UI
-                    recyclerView.apply {
-                        // set a LinearLayoutManager to handle Android
-                        layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-                        // set the custom adapter to the RecyclerView
-                        Log.d("MainActivity",users.toString())
-                        adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
-                    }
-                })
-            }
-        }
-
-    }
-
-    /*
-    val users = model.loadUsers().observe(this, Observer { users->
-
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                recyclerView.apply {
-                    layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-                    // set the custom adapter to the RecyclerView
-                    //Log.d("MainActivity",users.toString())
-                    adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
+        }else{
+            model.loadSelectedUsers(major, year).observe(viewLifecycleOwner, Observer{ users ->
+                // update UI
+                if(users!!.isEmpty()){
+                    Toast.makeText(context, "No users in the chosen category.", Toast.LENGTH_LONG).show()
                 }
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Toast.makeText(context,majors[p2], Toast.LENGTH_LONG).show()
                 recyclerView.apply {
                     // set a LinearLayoutManager to handle Android
                     layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
                     // set the custom adapter to the RecyclerView
-                    //Log.d("MainActivity",users.toString())
+                    Log.d("MainActivity",users.toString())
                     adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
                 }
-            }
-
+            })
         }
 
-    })
-    */
-    /*
-    spinner.adapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,majors)
-    spinnerClass.adapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,classes)
 
-    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-        override fun onNothingSelected(p0: AdapterView<*>?) {
-
-        }
-
-        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-            Toast.makeText(context,majors[p2], Toast.LENGTH_LONG).show()
-            recyclerView.apply {
-                // set a LinearLayoutManager to handle Android
-                layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-                // set the custom adapter to the RecyclerView
-                //Log.d("MainActivity",users.toString())
-                adapter = CustomAdapter(users, { user : ProfileResponse.User -> userClicked(user) })
-            }
-        }
 
     }
-    */
 
     return v
     }

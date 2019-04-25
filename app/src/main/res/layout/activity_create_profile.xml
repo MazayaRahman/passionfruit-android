@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bioView" />
+        app:layout_constraintTop_toBottomOf="@+id/userBio" />
 
     <EditText
         android:id="@+id/editClass"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/classView2" />
 
     <EditText
-        android:id="@+id/editAge2"
+        android:id="@+id/editFacebook"
         android:layout_width="110dp"
         android:layout_height="42dp"
         android:layout_marginStart="12dp"
@@ -51,12 +51,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/editAge3"
+        app:layout_constraintEnd_toStartOf="@+id/editInstagram"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fbView" />
 
     <EditText
-        android:id="@+id/editAge3"
+        android:id="@+id/editInstagram"
         android:layout_width="110dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/instaView" />
 
     <EditText
-        android:id="@+id/editAge4"
+        android:id="@+id/editTwitter"
         android:layout_width="110dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -80,7 +80,7 @@
         android:layout_marginRight="8dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editAge3"
+        app:layout_constraintStart_toEndOf="@+id/editInstagram"
         app:layout_constraintTop_toBottomOf="@+id/gitView" />
 
     <TextView
@@ -122,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameView" />
 
     <EditText
-        android:id="@+id/editName2"
+        android:id="@+id/editUserName"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -174,7 +174,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/bioView"
+        android:id="@+id/userBio"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="14dp"

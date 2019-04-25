@@ -2,8 +2,8 @@ package com.example.mazay.fruit.models
 
 import com.google.gson.annotations.SerializedName
 
-class LoginResponse {
+class YearResponse {
 
-    @SerializedName("uid") var userid: String? = null
+@SerializedName("years") var years: List<String>? = null
 
 }
